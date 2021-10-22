@@ -1,6 +1,6 @@
 const board = document.getElementById('board')
-let matrixSize=6;
-let winningCombination=3;
+let matrixSize=10;
+let winningCombination=10;
 
 
 function createMatrix (){
