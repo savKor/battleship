@@ -1,24 +1,38 @@
-*, *::after, *::before {
-	box-sizing: border-box;
-}
-  
 :root {
-	--cell-size: 100px;
-	--mark-size: calc(var(--cell-size) * .9);
+	--cell-size: 50px;
 }
   
 body {
     margin: 0;
+	box-sizing: border-box;
 }
-  
+
+#listOfShips {
+	background-color: rgb(135, 139, 100);
+	width: 20vw;
+	height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+}
+
 #board {
 	width: 100vw;
 	height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
 	display: grid;
 	justify-content: center;
 	align-content: center;
 	justify-items: center;
 	align-items: center;
+}
+
+#prep {
+	display: flex;
 }
   
 .cell {

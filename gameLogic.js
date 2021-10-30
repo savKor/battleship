@@ -50,3 +50,27 @@ function renderCell (rowIndex,columnIndex,rowElement) {
 }
 
 renderMatrix()
+
+let locationOfTheShips = new Array(10);
+
+function changePagePrepStage() {
+  for (var i = 0; i < locationOfTheShips.length; i++) {
+    if (arrayForCheck[i] = undefined) {
+      document.getElementById("nextButton").disabled = true;
+      break;
+    } else {
+      document.getElementById("nextButton").disabled = false;
+      document.getElementById("nextButton").onclick = function () {
+        location.href = "playingField.html";
+      };
+    }
+  }
+}
+
+changePagePrepStage()
+
+function name() {
+  for (var i = 0; i < locationOfTheShips.length; i++) {
+
+  }
+}
