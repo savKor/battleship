@@ -8,30 +8,25 @@ body {
 }
 
 #listOfShips {
-	background-color: rgb(135, 139, 100);
-	width: 20vw;
-	height: 60vh;
-    margin-left: auto;
-    margin-right: auto;
-	justify-content: center;
+	background-color: rgb(174, 240, 252);
+	margin-top: 135px;
+	border: 2px solid black;
+	display: flex;
 	align-content: center;
 	justify-items: center;
-	align-items: center;
 }
 
 #board {
 	width: 100vw;
 	height: 100vh;
-    margin-left: auto;
-    margin-right: auto;
 	display: grid;
-	justify-content: center;
 	align-content: center;
 	justify-items: center;
-	align-items: center;
 }
 
 #prep {
+	width: 100vw;
+	height: 100vh;
 	display: flex;
 }
   
