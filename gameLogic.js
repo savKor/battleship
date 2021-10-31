@@ -1,4 +1,4 @@
-const board = document.getElementById('board')
+const board = document.querySelectorAll('.board')
 let matrixSize=10;
 let winningCombination=10;
 
