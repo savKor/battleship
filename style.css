@@ -12,7 +12,7 @@ body {
 }
 */
 
-#board {
+.board {
 	margin-left: 20vh;
 	display: grid;
 	align-content: center;
