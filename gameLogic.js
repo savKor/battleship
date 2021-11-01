@@ -1,4 +1,4 @@
-const board = document.querySelectorAll('.board')
+const board = document.getElementById("board")
 let matrixSize=10;
 let winningCombination=10;
 
@@ -22,7 +22,7 @@ function getMatrixRowWithEmptyElement(size) {
 
 let matrix = createMatrix();
 
-function renderMatrix() {
+function renderMatrix(board) {
   for (let i = 0; i < matrix.length; i++) {
     const row = matrix[i];
     renderRow(row, i)
@@ -34,6 +34,7 @@ function renderRow (row, rowIndex) {
   let newDiv = document.createElement("div");
   newDiv.className = 'row';
   newDiv.id = 'row'+rowIndex;
+  //тута
   board.appendChild(newDiv);
   const rowElement = document.getElementById('row'+rowIndex)
   rowElement.style.display = "flex";
@@ -48,8 +49,6 @@ function renderCell (rowIndex,columnIndex,rowElement) {
   newDiv.id = rowIndex+"_"+columnIndex;
   rowElement.appendChild(newDiv);
 }
-
-renderMatrix()
 
 let locationOfTheShips = new Array(10);
 
