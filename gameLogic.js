@@ -2,8 +2,7 @@ const board = document.getElementsByClassName('board')
 let matrixSize=10;
 let winningCombination=10;
 
-
-function createMatrix (){
+function createMatrix() {
   let matrix = [];
   let n = matrixSize, m = matrixSize;
   for(let i=0; i<n; i++) {
@@ -33,7 +32,6 @@ function renderMatrix() {
   }
 }
 
-
 function renderRow (row, rowIndex, boardNumber) {
   let newDiv = document.createElement("div");
   newDiv.className = 'row';
@@ -58,8 +56,17 @@ function renderCell (rowIndex,columnIndex,rowElement) {
 
 renderMatrix()
 
-let locationOfTheShips = new Array(10);
+let player1ShipsLocation = [];
+let player2ShipsLocation = [];
 
+function chooseShipe() {
+  
+}
+
+
+function PutShipOnBoard() {
+  
+}
 /**
 function changePagePrepStage() {
   for (var i = 0; i < locationOfTheShips.length; i++) {
