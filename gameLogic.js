@@ -59,14 +59,17 @@ renderMatrix()
 let player1ShipsLocation = [];
 let player2ShipsLocation = [];
 
-function chooseShipe() {
+function chooseShip() {
   
 }
 
 
-function PutShipOnBoard() {
+function putShipOnBoard() {
   
 }
+
+
+
 /**
 function changePagePrepStage() {
   for (var i = 0; i < locationOfTheShips.length; i++) {

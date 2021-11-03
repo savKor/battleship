@@ -7,20 +7,26 @@ body {
 	box-sizing: border-box;
 }
 
-/**
+
 #listOfShips {
+	margin: 0 auto; /* Выравнивание блока по центру */
+	width: 150px; /* Ширина блока */
+	line-height: 1px; /* Межстрочное расстояние */
+	border: 4mm ridge rgba(170, 50, 220, .6);
 }
-*/
+
+.ship {
+	width: 135px;
+	height: 100px;
+}
 
 .board {
-	margin-left: 20vh;
+	margin: 0 auto;
 	display: grid;
+	justify-content: center;
 	align-content: center;
 	justify-items: center;
-}
-
-#prep {
-	display: flex;
+	align-items: center;
 }
   
 .cell {
