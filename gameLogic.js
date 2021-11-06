@@ -24,7 +24,6 @@ let matrix = createMatrix();
 function renderMatrix() {
   for (i=0; i<board.length; i++) {
     var numberOfBoard = i;
-    debugger;
     for (let i = 0; i < matrix.length; i++) {
       const row = matrix[i];
       renderRow(row, i, numberOfBoard)
@@ -37,7 +36,6 @@ function renderRow (row, rowIndex, boardNumber) {
   newDiv.className = 'row';
   newDiv.id = 'row'+rowIndex;
   board[boardNumber].appendChild(newDiv);
-  debugger;
   const rowElement = document.getElementById('row'+rowIndex)
   rowElement.style.display = "flex";
   for (let j = 0; j < row.length; j++) {
@@ -52,20 +50,62 @@ function renderCell (rowIndex,columnIndex,rowElement) {
   rowElement.appendChild(newDiv);
 }
 
-//хочу чтобы создавалась 
-
 renderMatrix()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const prepBoard = document.getElementById('preparationBoard')
+let cellsPrepBoard = prepBoard.querySelectorAll('.cell')
+console.log(prepBoard)
 let player1ShipsLocation = [];
 let player2ShipsLocation = [];
+let ship;
 
-function chooseShip() {
-  
+function startPage() {
+  cellsPrepBoard.forEach(cell => {
+    cell.style.backgroundColor = "";
+    cell.removeEventListener('click', handleClick)
+    cell.addEventListener('click', handleClick, { once: true })
+  })
+}
+
+startPage()
+
+
+function setShip(centerRow, centerColumn) {
+  let chosenCell= prepBoard.getElementById(centerRow+'_'+centerColumn);
+  chosenCell.style.backgroundColor = "red";
 }
 
 
-function putShipOnBoard() {
-  
+function handleClick(e) {
+  const cell = e.target
+  console.log(cell)
+  let handleCell = cell
+  handleCell = handleCell.id.split('_');
+  let centerRow=handleCell[0]
+  let centerColumn=handleCell[1]
+  setShip(centerRow, centerColumn)
 }
 
 /**
@@ -83,6 +123,7 @@ function putShipOnBoard() {
     2. После установки его на поле его координаты будут записываются.
     3. После этого пользователь должен снова выбрать корабль.
 */
+
 
 
 
