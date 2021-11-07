@@ -72,11 +72,11 @@ renderMatrix()
 
 
 
-
+//сделать так, чтобы этот код работал только на странице подготовки
 
 const prepBoard = document.getElementById('preparationBoard')
-let cellsPrepBoard = prepBoard.querySelectorAll('.cell')
-console.log(prepBoard)
+let cellsPrepBoard = document.querySelectorAll('.cell')
+console.log()
 let player1ShipsLocation = [];
 let player2ShipsLocation = [];
 let ship;
@@ -93,7 +93,7 @@ startPage()
 
 
 function setShip(centerRow, centerColumn) {
-  let chosenCell= prepBoard.getElementById(centerRow+'_'+centerColumn);
+  let chosenCell= document.getElementById(centerRow+'_'+centerColumn);
   chosenCell.style.backgroundColor = "red";
 }
 
