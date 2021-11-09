@@ -73,8 +73,7 @@ renderMatrix()
 
 
 //сделать так, чтобы этот код работал только на странице подготовки
-
-const prepBoard = document.getElementById('preparationBoard')
+const oneCell = document.getElementById('oneCell')
 let cellsPrepBoard = document.querySelectorAll('.cell')
 console.log()
 let player1ShipsLocation = [];
@@ -86,10 +85,16 @@ let ship;
 function startPrepPage() {
   cellsPrepBoard.forEach(cell => {
     cell.style.backgroundColor = "";
+  })
+}
+
+oneCell.onclick = function() {
+  cellsPrepBoard.forEach(cell => {
     cell.removeEventListener('click', handleClick)
     cell.addEventListener('click', handleClick, { once: true })
   })
-}
+};
+
 
 startPrepPage()
 
@@ -104,19 +109,31 @@ function addCoordinatesOfTheShip(centerRow, centerColumn) {
 
 
 function setOneCellShip(handleCell, array) {
-  handleCell.style.backgroundColor = "blue";
-  array.push(handleCell.id);
+  let coordinate = []
+  let twoCoordinate = handleCell.id.split('_');
+  let row=twoCoordinate[0]
+  let column=twoCoordinate[1]
+  coordinate.push(handleCell.id);
+  array.push(coordinate);
+  if (array !=undefined) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i]=row+1+"_"+column||row-1+"_"+column||row+"_"+column+1||row+"_"+column-1) {
+        break
+      } else {
+        handleCell.style.backgroundColor = "blue";
+        array.push(coordinate);
+      }
+    }
+  } else {
+    handleCell.style.backgroundColor = "blue";
+    array.push(coordinate);
+  } 
 }
 
 function handleClick(e) {
   const cell = e.target
-  console.log(cell)
   let handleCell = cell;
-  setOneCellShip(handleCell)
-  //надо сделать цикл при котором 
-  if (condition) {
-    
-  }
+  setOneCellShip(handleCell, player1ShipsLocation)
 }
 
 /**
@@ -126,6 +143,10 @@ function handleClick(e) {
     2. Если колличество кораблей закончилось на кнопку больше нельзя нажать.
 */
 
+
+
+
+
 /**
   Функция для установкий кораблей.
   Нужно сделать установку корабле на игровое поле:
@@ -134,6 +155,11 @@ function handleClick(e) {
     2. После установки его на поле его координаты будут записываются.
     3. После этого пользователь должен снова выбрать корабль.
 */
+
+
+
+
+
 
 
 
