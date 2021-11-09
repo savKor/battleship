@@ -81,7 +81,9 @@ let player1ShipsLocation = [];
 let player2ShipsLocation = [];
 let ship;
 
-function startPage() {
+
+//функция запуск страницы подготовски
+function startPrepPage() {
   cellsPrepBoard.forEach(cell => {
     cell.style.backgroundColor = "";
     cell.removeEventListener('click', handleClick)
@@ -89,23 +91,32 @@ function startPage() {
   })
 }
 
-startPage()
+startPrepPage()
 
-
-function setShip(centerRow, centerColumn) {
-  let chosenCell= document.getElementById(centerRow+'_'+centerColumn);
-  chosenCell.style.backgroundColor = "red";
+function addCoordinatesOfTheShip(centerRow, centerColumn) {
+  let matrixToCheck = [];
+  for(let i=0; i<matrixRow; i++) {
+    matrixToCheck[i] = getMatrixRowWithElementsFromMainMatrix();
+  }
+  matrixToCheck[winningCombination-1][winningCombination-1] = "cell "+currentSymbol
+  return matrixToCheck
 }
 
+
+function setOneCellShip(handleCell, array) {
+  handleCell.style.backgroundColor = "blue";
+  array.push(handleCell.id);
+}
 
 function handleClick(e) {
   const cell = e.target
   console.log(cell)
-  let handleCell = cell
-  handleCell = handleCell.id.split('_');
-  let centerRow=handleCell[0]
-  let centerColumn=handleCell[1]
-  setShip(centerRow, centerColumn)
+  let handleCell = cell;
+  setOneCellShip(handleCell)
+  //надо сделать цикл при котором 
+  if (condition) {
+    
+  }
 }
 
 /**
