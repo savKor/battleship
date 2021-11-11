@@ -80,7 +80,21 @@ let player1ShipsLocation = [];
 let player2ShipsLocation = [];
 let ship;
 
+function changeColorOfCellWhenCoursorOnIt() {
+  for (let i = 0; i < cellsPrepBoard.length; i++) {
+    cellsPrepBoard[i].onmouseover = function(e) {
+      let target = e.target;
+      target.style.background = 'blue';
+    };
 
+    cellsPrepBoard[i].onmouseout = function(e) {
+      let target = e.target;
+      target.style.background = '';
+    };
+  }
+}
+
+changeColorOfCellWhenCoursorOnIt()
 //функция запуск страницы подготовски
 function startPrepPage() {
   cellsPrepBoard.forEach(cell => {
@@ -110,24 +124,9 @@ function addCoordinatesOfTheShip(centerRow, centerColumn) {
 
 function setOneCellShip(handleCell, array) {
   let coordinate = []
-  let twoCoordinate = handleCell.id.split('_');
-  let row=twoCoordinate[0]
-  let column=twoCoordinate[1]
   coordinate.push(handleCell.id);
+  handleCell.style.backgroundColor = "blue";
   array.push(coordinate);
-  if (array !=undefined) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i]=row+1+"_"+column||row-1+"_"+column||row+"_"+column+1||row+"_"+column-1) {
-        break
-      } else {
-        handleCell.style.backgroundColor = "blue";
-        array.push(coordinate);
-      }
-    }
-  } else {
-    handleCell.style.backgroundColor = "blue";
-    array.push(coordinate);
-  } 
 }
 
 function handleClick(e) {
