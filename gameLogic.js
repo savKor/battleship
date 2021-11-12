@@ -1,126 +1,69 @@
-const board = document.getElementsByClassName('board')
-let matrixSize=10;
-let winningCombination=10;
+const selectButtons = document.querySelectorAll('.typeOfShip')
+let cellsPreparationBoard = document.querySelectorAll('.cell')
+console.log()
+let player1ShipsLocation = [];
+let player2ShipsLocation = [];
 
-function createMatrix() {
-  let matrix = [];
-  let n = matrixSize, m = matrixSize;
-  for(let i=0; i<n; i++) {
-      matrix[i] = getMatrixRowWithEmptyElement(m);
-  }
-  return matrix
+function turnShip() {
+  
 }
 
-function getMatrixRowWithEmptyElement(size) {
-  let row = []
-  for (let j=0; j<size; j++) {
-    row[j]=undefined;
-  }
-  return row;
-}
+function changeColorOfCellWhenCoursorOnIt(shipLength) {
+  for (let i = 0; i < board.length; i++) {
+    board[i].onmouseover = function(e) {
+      let shipLocation = e.target;
+      let centerCellOfShip = shipLocation;
+      centerCellOfShip = shipLocation.id.split('_');
+      let row=centerCellOfShip[0]
+      let column=centerCellOfShip[1]
+      let ship = showShipOnBoard(shipLength,row,column);
+      console.log(ship)
+      for (let j = 0; j < ship.length; j++) {
+        let cellOfShip = ship[j];
+        debugger
+        document.getElementById(cellOfShip).style.background = 'blue';
+        
+      }
 
-let matrix = createMatrix();
-
-function renderMatrix() {
-  for (i=0; i<board.length; i++) {
-    var numberOfBoard = i;
-    for (let i = 0; i < matrix.length; i++) {
-      const row = matrix[i];
-      renderRow(row, i, numberOfBoard)
+    };
+    board[i].onmouseout = function(e) {
+      let shipLocation = e.target;
+      let centerCellOfShip = shipLocation;
+      centerCellOfShip = shipLocation.id.split('_');
+      let row=centerCellOfShip[0]
+      let column=centerCellOfShip[1]
+      let ship = showShipOnBoard(shipLength,row,column);
+      for (let j = 0; j < ship.length; j++) {
+        let cellOfShip = ship[j];
+        document.getElementById(cellOfShip).style.background = '';
+      }
     }
   }
 }
 
-function renderRow (row, rowIndex, boardNumber) {
-  let newDiv = document.createElement("div");
-  newDiv.className = 'row';
-  newDiv.id = 'row'+rowIndex;
-  board[boardNumber].appendChild(newDiv);
-  const rowElement = document.getElementById('row'+rowIndex)
-  rowElement.style.display = "flex";
-  for (let j = 0; j < row.length; j++) {
-    renderCell(rowIndex,j,rowElement)
+function showShipOnBoard(shipLength,row,column) {
+  let shipArray = []
+  for (let i = 0; i < shipLength; i++) {
+    const rowParsed = parseInt(row)
+    const columnParsed = parseInt(column)
+    shipArray.push(rowParsed+i+"_"+columnParsed)
   }
+  return shipArray
 }
 
-function renderCell (rowIndex,columnIndex,rowElement) {
-  let newDiv = document.createElement("div");
-  newDiv.className = 'cell';
-  newDiv.id = rowIndex+"_"+columnIndex;
-  rowElement.appendChild(newDiv);
+function chooseShip(e) {
+  const shipButton = e.target.closest('.typeOfShip')
+  let shipLength = parseInt(shipButton.dataset.shipLength);
+  changeColorOfCellWhenCoursorOnIt(shipLength)
 }
 
-renderMatrix()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//сделать так, чтобы этот код работал только на странице подготовки
-const oneCell = document.getElementById('oneCell')
-let cellsPrepBoard = document.querySelectorAll('.cell')
-console.log()
-let player1ShipsLocation = [];
-let player2ShipsLocation = [];
-let ship;
-
-function changeColorOfCellWhenCoursorOnIt() {
-  for (let i = 0; i < cellsPrepBoard.length; i++) {
-    cellsPrepBoard[i].onmouseover = function(e) {
-      let target = e.target;
-      target.style.background = 'blue';
-    };
-
-    cellsPrepBoard[i].onmouseout = function(e) {
-      let target = e.target;
-      target.style.background = '';
+function pushButtonToSelectShip() {
+  for (let i = 0; i < selectButtons.length; i++) {
+    selectButtons[i].onclick = function(e) {
+        chooseShip(e);
     };
   }
 }
-
-changeColorOfCellWhenCoursorOnIt()
-//функция запуск страницы подготовски
-function startPrepPage() {
-  cellsPrepBoard.forEach(cell => {
-    cell.style.backgroundColor = "";
-  })
-}
-
-oneCell.onclick = function() {
-  cellsPrepBoard.forEach(cell => {
-    cell.removeEventListener('click', handleClick)
-    cell.addEventListener('click', handleClick, { once: true })
-  })
-};
-
-
-startPrepPage()
-
-function addCoordinatesOfTheShip(centerRow, centerColumn) {
-  let matrixToCheck = [];
-  for(let i=0; i<matrixRow; i++) {
-    matrixToCheck[i] = getMatrixRowWithElementsFromMainMatrix();
-  }
-  matrixToCheck[winningCombination-1][winningCombination-1] = "cell "+currentSymbol
-  return matrixToCheck
-}
-
 
 function setOneCellShip(handleCell, array) {
   let coordinate = []
@@ -129,13 +72,20 @@ function setOneCellShip(handleCell, array) {
   array.push(coordinate);
 }
 
-function handleClick(e) {
-  const cell = e.target
-  let handleCell = cell;
-  setOneCellShip(handleCell, player1ShipsLocation)
-}
+
+pushButtonToSelectShip()
+
+
+
+
+
+
+
+
+
 
 /**
+ * 
   Функция выбора корабля.
   Выбор кораблей из списка:
     1. После нажатия на картику корабля, корабль выбирается

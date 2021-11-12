@@ -11,20 +11,21 @@
       </div>
       <div id="listOfShips">
         <!--Временные заглушки на время разработки-->
-        <button class="typeOfShip" id="fourCell">
+        <button  class="typeOfShip" data-ship-length = "4">
           <img class="ship" src="4cellsShip.png">
         </button>
-        <button class="typeOfShip" id="threeCell">
+        <button class="typeOfShip" data-ship-length = "3">
           <img class="ship" src="3cellsShip.png">
         </button>
-        <button class="typeOfShip" id="twoCell">
+        <button class="typeOfShip" data-ship-length = "2">
           <img class="ship" src="2cellsShip.png">
         </button>
-        <button class="typeOfShip" id="oneCell">
+        <button class="typeOfShip" data-ship-length = "1">
           <img class="ship" src="1cellsShip.png">
         </button>
       </div>
       <button id="nextButton">Готово</button>
+      <script src="renderMatrix.js"></script>
       <script src="gameLogic.js"></script>
     </body>
 </html>
