@@ -1,3 +1,4 @@
+const boardOfPreparetionPage = document.getElementById("preparationBoard")
 const selectButtons = document.querySelectorAll('.typeOfShip')
 let cellsPreparationBoard = document.querySelectorAll('.cell')
 console.log()
@@ -9,8 +10,7 @@ function turnShip() {
 }
 
 function changeColorOfCellWhenCoursorOnIt(shipLength) {
-  for (let i = 0; i < board.length; i++) {
-    board[i].onmouseover = function(e) {
+    boardOfPreparetionPage.onmouseover = function(e) {
       let shipLocation = e.target;
       let centerCellOfShip = shipLocation;
       centerCellOfShip = shipLocation.id.split('_');
@@ -20,13 +20,12 @@ function changeColorOfCellWhenCoursorOnIt(shipLength) {
       console.log(ship)
       for (let j = 0; j < ship.length; j++) {
         let cellOfShip = ship[j];
-        debugger
         document.getElementById(cellOfShip).style.background = 'blue';
         
       }
 
     };
-    board[i].onmouseout = function(e) {
+    boardOfPreparetionPage.onmouseout = function(e) {
       let shipLocation = e.target;
       let centerCellOfShip = shipLocation;
       centerCellOfShip = shipLocation.id.split('_');
@@ -38,7 +37,6 @@ function changeColorOfCellWhenCoursorOnIt(shipLength) {
         document.getElementById(cellOfShip).style.background = '';
       }
     }
-  }
 }
 
 function showShipOnBoard(shipLength,row,column) {
