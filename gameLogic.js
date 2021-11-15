@@ -6,7 +6,16 @@ let player1ShipsLocation = [];
 let player2ShipsLocation = [];
 
 function turnShip() {
-  
+  var clickCounter=0;
+  document.getElementById("turnButton").onclick = function() { 
+    if (clickCounter==3) {
+      clickCounter == 1;
+    } else {
+      clickCounter++;
+      if (clickCounter==2) {
+      }
+    }
+  };
 }
 
 function showLocationOfTheShip(shipLength) {
@@ -16,7 +25,7 @@ function showLocationOfTheShip(shipLength) {
       centerCellOfShip = shipLocation.id.split('_');
       let row=centerCellOfShip[0]
       let column=centerCellOfShip[1]
-      let ship = showShipOnBoard(shipLength,row,column);
+      let ship = shipOnBoard(shipLength,row,column);
       console.log(ship)
       for (let j = 0; j < ship.length; j++) {
         let cellOfShip = ship[j];
@@ -34,7 +43,7 @@ function showLocationOfTheShip(shipLength) {
       centerCellOfShip = shipLocation.id.split('_');
       let row=centerCellOfShip[0]
       let column=centerCellOfShip[1]
-      let ship = showShipOnBoard(shipLength,row,column);
+      let ship = shipOnBoard(shipLength,row,column);
       for (let j = 0; j < ship.length; j++) {
         let cellOfShip = ship[j];
         document.getElementById(cellOfShip).style.background = '';
@@ -42,7 +51,7 @@ function showLocationOfTheShip(shipLength) {
     }
 }
 
-function showShipOnBoard(shipLength,row,column) {
+function shipOnBoard(shipLength,row,column) {
   let shipArray = []
   const rowParsed = parseInt(row)
   const columnParsed = parseInt(column)
