@@ -9,7 +9,7 @@ function turnShip() {
   
 }
 
-function changeColorOfCellWhenCoursorOnIt(shipLength) {
+function showLocationOfTheShip(shipLength) {
     boardOfPreparetionPage.onmouseover = function(e) {
       let shipLocation = e.target;
       let centerCellOfShip = shipLocation;
@@ -20,8 +20,11 @@ function changeColorOfCellWhenCoursorOnIt(shipLength) {
       console.log(ship)
       for (let j = 0; j < ship.length; j++) {
         let cellOfShip = ship[j];
-        document.getElementById(cellOfShip).style.background = 'blue';
-        
+        if (ship.length==shipLength) {
+          document.getElementById(cellOfShip).style.background = 'blue';
+        } else {
+          document.getElementById(cellOfShip).style.background = 'red';
+        }
       }
 
     };
@@ -41,10 +44,14 @@ function changeColorOfCellWhenCoursorOnIt(shipLength) {
 
 function showShipOnBoard(shipLength,row,column) {
   let shipArray = []
+  const rowParsed = parseInt(row)
+  const columnParsed = parseInt(column)
   for (let i = 0; i < shipLength; i++) {
-    const rowParsed = parseInt(row)
-    const columnParsed = parseInt(column)
-    shipArray.push(rowParsed+i+"_"+columnParsed)
+    if (rowParsed+i>=matrix.length) {
+      break
+    } else {
+      shipArray.push(rowParsed+i+"_"+columnParsed)
+    }
   }
   return shipArray
 }
@@ -52,7 +59,7 @@ function showShipOnBoard(shipLength,row,column) {
 function chooseShip(e) {
   const shipButton = e.target.closest('.typeOfShip')
   let shipLength = parseInt(shipButton.dataset.shipLength);
-  changeColorOfCellWhenCoursorOnIt(shipLength)
+  showLocationOfTheShip(shipLength)
 }
 
 function pushButtonToSelectShip() {
@@ -62,14 +69,6 @@ function pushButtonToSelectShip() {
     };
   }
 }
-
-function setOneCellShip(handleCell, array) {
-  let coordinate = []
-  coordinate.push(handleCell.id);
-  handleCell.style.backgroundColor = "blue";
-  array.push(coordinate);
-}
-
 
 pushButtonToSelectShip()
 
