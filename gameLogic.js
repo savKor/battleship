@@ -1,85 +1,84 @@
 const boardOfPreparetionPage = document.getElementById("preparationBoard")
 const selectButtons = document.querySelectorAll('.typeOfShip')
 let cellsPreparationBoard = document.querySelectorAll('.cell')
-console.log()
+let turnButton = document.getElementById("turnButton")
 let player1ShipsLocation = [];
 let player2ShipsLocation = [];
+let verticalDirection=true;
 
-function turnShip() {
-  var clickCounter=0;
-  document.getElementById("turnButton").onclick = function() { 
-    if (clickCounter==3) {
-      clickCounter == 1;
+
+function addListenersToSelectShip() {
+  for (let selectButton of selectButtons) {
+    selectButton.onclick = handleSelectShipButtonClick;
+  }
+}
+
+function handleSelectShipButtonClick(e) {
+  const shipButton = e.target.closest('.typeOfShip');
+  let shipLength = parseInt(shipButton.dataset.shipLength);
+  addListenersToShowTheShip(shipLength)
+}
+
+function addListenersToShowTheShip(shipLength) {
+  boardOfPreparetionPage.onmouseover = (e) => {handleOnmouseoverOnBoard(e, shipLength)}
+  boardOfPreparetionPage.onmouseout = (e) => {handleOnmouseoutOnBoard(e, shipLength)};
+}
+
+function handleOnmouseoverOnBoard(e, shipLength) {
+  let shipLocation = e.target;
+  let trackedCellOfShip = shipLocation;
+  trackedCellOfShip = shipLocation.id.split('_');
+  let row=trackedCellOfShip[0]
+  let column=trackedCellOfShip[1]
+  let ship = getShipElementsIds(shipLength,row,column);
+  showCoordintesOfElementsOfTheShipOnTheBoard(ship, shipLength)
+}
+
+function handleOnmouseoutOnBoard(e, shipLength) {
+  let shipLocation = e.target;
+  let trackedCellOfShip = shipLocation;
+  trackedCellOfShip = shipLocation.id.split('_');
+  let row=trackedCellOfShip[0]
+  let column=trackedCellOfShip[1]
+  let ship = getShipElementsIds(shipLength,row,column);
+  hideCoordinatesOfElementsOfTheShipOnBoard(ship)
+}
+
+function showCoordintesOfElementsOfTheShipOnTheBoard(ship, shipLength) {
+  for (let elementOfShip of ship) {
+    if (ship.length==shipLength) {
+      document.getElementById(elementOfShip).style.background = 'blue';
     } else {
-      clickCounter++;
-      if (clickCounter==2) {
-      }
+      document.getElementById(elementOfShip).style.background = 'red';
     }
-  };
+  }
 }
 
-function showLocationOfTheShip(shipLength) {
-    boardOfPreparetionPage.onmouseover = function(e) {
-      let shipLocation = e.target;
-      let centerCellOfShip = shipLocation;
-      centerCellOfShip = shipLocation.id.split('_');
-      let row=centerCellOfShip[0]
-      let column=centerCellOfShip[1]
-      let ship = shipOnBoard(shipLength,row,column);
-      console.log(ship)
-      for (let j = 0; j < ship.length; j++) {
-        let cellOfShip = ship[j];
-        if (ship.length==shipLength) {
-          document.getElementById(cellOfShip).style.background = 'blue';
-        } else {
-          document.getElementById(cellOfShip).style.background = 'red';
-        }
-      }
+function hideCoordinatesOfElementsOfTheShipOnBoard(ship) {
+  for (let elementOfShip of ship) {
+    document.getElementById(elementOfShip).style.background = '';
+  }
+};
 
-    };
-    boardOfPreparetionPage.onmouseout = function(e) {
-      let shipLocation = e.target;
-      let centerCellOfShip = shipLocation;
-      centerCellOfShip = shipLocation.id.split('_');
-      let row=centerCellOfShip[0]
-      let column=centerCellOfShip[1]
-      let ship = shipOnBoard(shipLength,row,column);
-      for (let j = 0; j < ship.length; j++) {
-        let cellOfShip = ship[j];
-        document.getElementById(cellOfShip).style.background = '';
-      }
-    }
-}
-
-function shipOnBoard(shipLength,row,column) {
-  let shipArray = []
+function getShipElementsIds(shipLength,row,column) {
+  let arrayOfShipId = []
   const rowParsed = parseInt(row)
   const columnParsed = parseInt(column)
   for (let i = 0; i < shipLength; i++) {
     if (rowParsed+i>=matrix.length) {
-      break
+      break6
     } else {
-      shipArray.push(rowParsed+i+"_"+columnParsed)
+      arrayOfShipId.push(rowParsed+i+"_"+columnParsed)
     }
   }
-  return shipArray
+  return arrayOfShipId
 }
 
-function chooseShip(e) {
-  const shipButton = e.target.closest('.typeOfShip')
-  let shipLength = parseInt(shipButton.dataset.shipLength);
-  showLocationOfTheShip(shipLength)
+function changeDirection() {
+  verticalDirection = false;
 }
 
-function pushButtonToSelectShip() {
-  for (let i = 0; i < selectButtons.length; i++) {
-    selectButtons[i].onclick = function(e) {
-        chooseShip(e);
-    };
-  }
-}
-
-pushButtonToSelectShip()
+addListenersToSelectShip()
 
 
 
